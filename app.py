@@ -13,9 +13,9 @@ load_dotenv(override=True)
 os.environ["GOOGLE_API_KEY"] = os.environ.get("GEMINI_API_KEY", "")
 os.environ["TAVILY_API_KEY"] = os.environ.get("TAVILY_API_KEY", "")
 
-st.set_page_config(page_title="Financial Analysis Assistant", page_icon="💰", layout="centered")
-st.title("Financial Analysis Assistant")
-st.caption("Ask questions about financial information of Apple and Nvidia.")
+st.set_page_config(page_title="Code of Conduct Assistant", page_icon="💰", layout="centered")
+st.title("Code of Conduct Assistant")
+st.caption("Ask questions about Code of Conduct of Apple and Google.")
 
 @st.cache_resource
 def init_agent():
@@ -24,8 +24,8 @@ def init_agent():
     retriever = vectorstore.as_retriever()
     retriever_tool = create_retriever_tool(
         retriever,
-        name="Financial_information_search_for_apple_and_nvidia",
-        description="Search this tool first for any questions regarding Financial information of Apple and Nvidia."
+        name="code_of_conduct_search_for_apple_and_google",
+        description="Search this tool first for any questions regarding Code of Conduct of Apple and Google."
     )
     tools = [retriever_tool]
     
@@ -37,7 +37,7 @@ def init_agent():
 agent_executor = init_agent()
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": "Hello! I can help you with financial analysis of Apple and Nvidia."}
+        {"role": "assistant", "content": "Hello! I can help you with Code of Conduct of Apple and Google."}
     ]
 
 if "thread_id" not in st.session_state:
